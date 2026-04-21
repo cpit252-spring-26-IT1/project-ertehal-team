@@ -40,5 +40,9 @@ public class Itinerary {
     public String getTripName() {
         return tripName;
     }
+
+
 }
+
+
 
