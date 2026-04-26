@@ -1,4 +1,4 @@
-package fcit.cpit252.Ertehal;
+package fcit.cpit252.Ertehal.Adapter_response;
 
 public class ExternalActivityResponse {
     private final String title;

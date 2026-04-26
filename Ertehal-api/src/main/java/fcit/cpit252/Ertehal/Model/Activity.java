@@ -1,4 +1,4 @@
-package fcit.cpit252.Ertehal;
+package fcit.cpit252.Ertehal.Model;
 
 public class Activity implements TravelComponent {
     private String name;

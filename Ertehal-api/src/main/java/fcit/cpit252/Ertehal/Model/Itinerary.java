@@ -1,4 +1,4 @@
-package fcit.cpit252.Ertehal;
+package fcit.cpit252.Ertehal.Model;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package fcit.cpit252.Ertehal;
+package fcit.cpit252.Ertehal.Model;
 
 public class Client implements User{
     private final String username;
