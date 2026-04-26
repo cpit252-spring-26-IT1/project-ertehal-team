@@ -8,6 +8,7 @@ public class ErtehalApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ErtehalApplication.class, args);
+
 	}
 
 }
