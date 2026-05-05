@@ -8,7 +8,23 @@ public class ExternalFlightAdapter implements FlightAdapter {
 
     @Override
     public Flight adapt(ExternalFlightResponse response) {
-        // TODO: map ExternalFlightResponse fields to a Flight object
-        return null;
+        String origin = response.getOriginIata() != null
+                ? response.getOriginIata() : "UNKNOWN";
+
+        String destination = response.getDestinationIata() != null
+                ? response.getDestinationIata() : "UNKNOWN";
+
+        double price = parseAmount(response.getTotalAmount(), 1500.0);
+
+        return new Flight(origin, destination, price);
+    }
+
+    private double parseAmount(String amount, double fallback) {
+        if (amount == null) return fallback;
+        try {
+            return Double.parseDouble(amount);
+        } catch (NumberFormatException e) {
+            return fallback;
+        }
     }
 }
