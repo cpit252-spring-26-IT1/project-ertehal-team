@@ -1,17 +1,29 @@
 package fcit.cpit252.Ertehal.Adapter_response;
 
-public class ExternalActivityResponse {
-    private final String title;
-    private final String destination;
-    private final double amount;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public ExternalActivityResponse(String title, String destination, double amount) {
-        this.title = title;
-        this.destination = destination;
-        this.amount = amount;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ExternalActivityResponse {
+
+    @JsonProperty("place_name")
+    private String placeName;
+
+    @JsonProperty("city")
+    private String city;
+
+    @JsonProperty("category")
+    private String category;
+
+    public ExternalActivityResponse() {}
+
+    public ExternalActivityResponse(String placeName, String city, String category) {
+        this.placeName = placeName;
+        this.city = city;
+        this.category = category;
     }
 
-    public String getTitle() { return title; }
-    public String getDestination() { return destination; }
-    public double getAmount() { return amount; }
+    public String getPlaceName() { return placeName; }
+    public String getCity() { return city; }
+    public String getCategory() { return category; }
 }

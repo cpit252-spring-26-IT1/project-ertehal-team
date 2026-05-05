@@ -1,17 +1,35 @@
 package fcit.cpit252.Ertehal.Adapter_response;
 
-public class ExternalFlightResponse {
-    private final String origin;
-    private final String destination;
-    private final double fare;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-    public ExternalFlightResponse(String origin, String destination, double fare) {
-        this.origin = origin;
-        this.destination = destination;
-        this.fare = fare;
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ExternalFlightResponse {
+
+    @JsonProperty("origin_iata")
+    private String originIata;
+
+    @JsonProperty("destination_iata")
+    private String destinationIata;
+
+    @JsonProperty("total_amount")
+    private String totalAmount;
+
+    @JsonProperty("total_currency")
+    private String totalCurrency;
+
+    public ExternalFlightResponse() {}
+
+    public ExternalFlightResponse(String originIata, String destinationIata,
+                                  String totalAmount, String totalCurrency) {
+        this.originIata = originIata;
+        this.destinationIata = destinationIata;
+        this.totalAmount = totalAmount;
+        this.totalCurrency = totalCurrency;
     }
 
-    public String getOrigin() { return origin; }
-    public String getDestination() { return destination; }
-    public double getFare() { return fare; }
+    public String getOriginIata() { return originIata; }
+    public String getDestinationIata() { return destinationIata; }
+    public String getTotalAmount() { return totalAmount; }
+    public String getTotalCurrency() { return totalCurrency; }
 }

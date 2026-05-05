@@ -1,16 +1,29 @@
-package fcit.cpit252.Ertehal.Adapter_impl;
+package fcit.cpit252.Ertehal.Adapter_response;
 
-import fcit.cpit252.Ertehal.Adapter_response.ExternalActivityResponse;
-import fcit.cpit252.Ertehal.Model.Activity;
-import fcit.cpit252.Ertehal.Adapter.ActivityAdapter;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ExternalActivityAdapter implements ActivityAdapter {
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ExternalActivityResponse {
 
-    @Override
-    public Activity adapt(ExternalActivityResponse response) {
-        return new Activity(
-                response.getTitle(),
-                response.getDestination(),
-                response.getAmount());
+    @JsonProperty("place_name")
+    private String placeName;
+
+    @JsonProperty("city")
+    private String city;
+
+    @JsonProperty("category")
+    private String category;
+
+    public ExternalActivityResponse() {}
+
+    public ExternalActivityResponse(String placeName, String city, String category) {
+        this.placeName = placeName;
+        this.city = city;
+        this.category = category;
     }
+
+    public String getPlaceName() { return placeName; }
+    public String getCity() { return city; }
+    public String getCategory() { return category; }
 }
