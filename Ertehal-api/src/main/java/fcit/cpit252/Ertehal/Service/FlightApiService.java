@@ -16,7 +16,7 @@ public class FlightApiService implements ApiService<ExternalFlightResponse> {
         // For the demo, we return realistic sample data that matches
         // the exact format Duffel would return.
         // The Adapter pattern is still justified because:
-        
+
         return new ExternalFlightResponse(
                 "JED", "CDG", "1500.00", "USD"
         );
