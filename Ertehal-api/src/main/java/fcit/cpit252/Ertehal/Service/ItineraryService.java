@@ -35,11 +35,11 @@ public class ItineraryService {
         this.activityAdapter = activityAdapter;
     }
 
-    public Itinerary buildItinerary(String tripName) {
+    public Itinerary buildItinerary(String tripName, String country) {
         return new Itinerary.Builder(tripName)
-                .addFlight(flightAdapter.adapt(flightApi.fetch()))
-                .addHotel(hotelAdapter.adapt(hotelApi.fetch()))
-                .addActivity(activityAdapter.adapt(activityApi.fetch()))
+                .addFlight(flightAdapter.adapt(flightApi.fetch(country)))
+                .addHotel(hotelAdapter.adapt(hotelApi.fetch(country)))
+                .addActivity(activityAdapter.adapt(activityApi.fetch(country)))
                 .build();
     }
 }
