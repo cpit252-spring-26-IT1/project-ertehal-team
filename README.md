@@ -33,6 +33,7 @@ App runs on: `http://localhost:8080`
 ## Screenshots
 | Version | Description |
 |---------|-------------|
+| v0.3.0 | Real API Integration Stage |
 | v0.2.0 | Adapter Pattern Stage |
 | v0.1.0 | Builder Pattern Stage |
 
