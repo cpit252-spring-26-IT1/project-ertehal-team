@@ -6,24 +6,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalActivityResponse {
 
-    @JsonProperty("place_name")
-    private String placeName;
+    @JsonProperty("activity_name")
+    private String activityName;
 
-    @JsonProperty("city")
-    private String city;
+    @JsonProperty("city_area")
+    private String cityArea;
 
-    @JsonProperty("category")
-    private String category;
+    @JsonProperty("price_sar")
+    private double priceSar;
 
     public ExternalActivityResponse() {}
 
-    public ExternalActivityResponse(String placeName, String city, String category) {
-        this.placeName = placeName;
-        this.city = city;
-        this.category = category;
+    public ExternalActivityResponse(String activityName, String cityArea, double priceSar) {
+        this.activityName = activityName;
+        this.cityArea = cityArea;
+        this.priceSar = priceSar;
     }
 
-    public String getPlaceName() { return placeName; }
-    public String getCity() { return city; }
-    public String getCategory() { return category; }
+    public String getActivityName() { return activityName; }
+    public String getCityArea() { return cityArea; }
+    public double getPriceSar() { return priceSar; }
 }

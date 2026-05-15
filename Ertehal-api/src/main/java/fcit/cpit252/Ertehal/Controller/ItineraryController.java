@@ -19,15 +19,20 @@ public class ItineraryController {
 
     @GetMapping("/demo")
     public String demo() {
-        Itinerary itinerary = itineraryService.buildItinerary("Summer Vacation", "france");
+        Itinerary itinerary = itineraryService.buildItinerary("Summer Vacation", "france", 3);
         return itinerary.getSummary();
     }
 
     @GetMapping("/build")
     public String build(
             @RequestParam(defaultValue = "My Trip") String tripName,
-            @RequestParam(defaultValue = "france") String country) {
-        Itinerary itinerary = itineraryService.buildItinerary(tripName, country);
+            @RequestParam(defaultValue = "france") String country,
+            @RequestParam(defaultValue = "3") int activities) {
+
+        // Clamp activities between 1 and 5
+        int activityCount = Math.max(1, Math.min(activities, 5));
+
+        Itinerary itinerary = itineraryService.buildItinerary(tripName, country, activityCount);
         return itinerary.getSummary();
     }
 }

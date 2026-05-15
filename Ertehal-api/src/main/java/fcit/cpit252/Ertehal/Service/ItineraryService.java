@@ -10,12 +10,14 @@ import fcit.cpit252.Ertehal.Model.Itinerary;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ItineraryService {
 
     private final ApiService<ExternalFlightResponse> flightApi;
     private final ApiService<ExternalHotelResponse> hotelApi;
-    private final ApiService<ExternalActivityResponse> activityApi;
+    private final ApiCollectionService<ExternalActivityResponse> activityApi;
     private final FlightAdapter flightAdapter;
     private final HotelAdapter hotelAdapter;
     private final ActivityAdapter activityAdapter;
@@ -23,7 +25,7 @@ public class ItineraryService {
     public ItineraryService(
             @Qualifier("flightApiService") ApiService<ExternalFlightResponse> flightApi,
             @Qualifier("hotelApiService") ApiService<ExternalHotelResponse> hotelApi,
-            @Qualifier("activityApiService") ApiService<ExternalActivityResponse> activityApi,
+            @Qualifier("activityApiService") ApiCollectionService<ExternalActivityResponse> activityApi,
             FlightAdapter flightAdapter,
             HotelAdapter hotelAdapter,
             ActivityAdapter activityAdapter) {
@@ -35,11 +37,21 @@ public class ItineraryService {
         this.activityAdapter = activityAdapter;
     }
 
-    public Itinerary buildItinerary(String tripName, String country) {
-        return new Itinerary.Builder(tripName)
-                .addFlight(flightAdapter.adapt(flightApi.fetch(country)))
-                .addHotel(hotelAdapter.adapt(hotelApi.fetch(country)))
-                .addActivity(activityAdapter.adapt(activityApi.fetch(country)))
-                .build();
+    public Itinerary buildItinerary(String tripName, String country, int activityCount) {
+        Itinerary.Builder builder = new Itinerary.Builder(tripName);
+
+        // Add one flight
+        builder.addFlight(flightAdapter.adapt(flightApi.fetch(country)));
+
+        // Add one hotel
+        builder.addHotel(hotelAdapter.adapt(hotelApi.fetch(country)));
+
+        // Add multiple activities
+        List<ExternalActivityResponse> activities = activityApi.fetch(country, activityCount);
+        for (ExternalActivityResponse activity : activities) {
+            builder.addActivity(activityAdapter.adapt(activity));
+        }
+
+        return builder.build();
     }
 }

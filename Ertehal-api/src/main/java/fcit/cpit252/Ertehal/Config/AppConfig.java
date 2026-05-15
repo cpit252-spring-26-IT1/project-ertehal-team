@@ -3,9 +3,9 @@ package fcit.cpit252.Ertehal.Config;
 import fcit.cpit252.Ertehal.Adapter.ActivityAdapter;
 import fcit.cpit252.Ertehal.Adapter.FlightAdapter;
 import fcit.cpit252.Ertehal.Adapter.HotelAdapter;
-import fcit.cpit252.Ertehal.Adapter_impl.ExternalActivityAdapter;
+import fcit.cpit252.Ertehal.Adapter_impl.AIActivityAdapter;
+import fcit.cpit252.Ertehal.Adapter_impl.AIHotelAdapter;
 import fcit.cpit252.Ertehal.Adapter_impl.ExternalFlightAdapter;
-import fcit.cpit252.Ertehal.Adapter_impl.ExternalHotelAdapter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
@@ -25,11 +25,11 @@ public class AppConfig {
 
     @Bean
     public HotelAdapter hotelAdapter() {
-        return new ExternalHotelAdapter();
+        return new AIHotelAdapter();
     }
 
     @Bean
     public ActivityAdapter activityAdapter() {
-        return new ExternalActivityAdapter();
+        return new AIActivityAdapter();
     }
 }

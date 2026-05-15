@@ -6,30 +6,29 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalHotelResponse {
 
-    @JsonProperty("property_name")
-    private String propertyName;
+    @JsonProperty("hotel_name")
+    private String hotelName;
 
-    @JsonProperty("city_name")
-    private String cityName;
+    @JsonProperty("city_area")
+    private String cityArea;
 
-    @JsonProperty("rate_total_amount")
-    private String rateTotalAmount;
+    @JsonProperty("nightly_rate_sar")
+    private double nightlyRateSar;
 
-    @JsonProperty("number_of_nights")
-    private int numberOfNights;
+    @JsonProperty("nights")
+    private int nights;
 
     public ExternalHotelResponse() {}
 
-    public ExternalHotelResponse(String propertyName, String cityName,
-                                 String rateTotalAmount, int numberOfNights) {
-        this.propertyName = propertyName;
-        this.cityName = cityName;
-        this.rateTotalAmount = rateTotalAmount;
-        this.numberOfNights = numberOfNights;
+    public ExternalHotelResponse(String hotelName, String cityArea, double nightlyRateSar, int nights) {
+        this.hotelName = hotelName;
+        this.cityArea = cityArea;
+        this.nightlyRateSar = nightlyRateSar;
+        this.nights = nights;
     }
 
-    public String getPropertyName() { return propertyName; }
-    public String getCityName() { return cityName; }
-    public String getRateTotalAmount() { return rateTotalAmount; }
-    public int getNumberOfNights() { return numberOfNights; }
+    public String getHotelName() { return hotelName; }
+    public String getCityArea() { return cityArea; }
+    public double getNightlyRateSar() { return nightlyRateSar; }
+    public int getNights() { return nights; }
 }
