@@ -2,6 +2,9 @@ package fcit.cpit252.Ertehal.Model;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
+import fcit.cpit252.Ertehal.Strategy.SortStrategy;
 
 public class Itinerary {
     private final String tripName;
@@ -30,6 +33,18 @@ public class Itinerary {
         sb.append("Total Cost: ").append(getTotalCost()).append(" SAR");
         return sb.toString();
     }
+
+    public String getSummarySorted(SortStrategy strategy) {
+        List<TravelComponent> sorted = strategy.sort(new ArrayList<>(components.values()));
+        StringBuilder sb = new StringBuilder();
+        sb.append("Trip: ").append(tripName).append(" — ").append(strategy.getName()).append("\n");
+        for (TravelComponent c : sorted) {
+            sb.append("  ").append(c.getSummary()).append("\n");
+        }
+        sb.append("Total Cost: ").append(getTotalCost()).append(" SAR");
+        return sb.toString();
+    }
+
 
     public String getTripName() {
         return tripName;
@@ -69,6 +84,7 @@ public class Itinerary {
             components.put("activity_" + activityCount, activity);
             return this;
         }
+
 
         public Itinerary build() {
             return new Itinerary(this);

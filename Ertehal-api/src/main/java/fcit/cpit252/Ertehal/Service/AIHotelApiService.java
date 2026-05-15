@@ -58,8 +58,14 @@ public class AIHotelApiService implements ApiService<ExternalHotelResponse> {
             String aiResponse = callGemini(prompt);
             return parseHotelResponse(aiResponse);
         } catch (Exception e) {
-            System.out.println("AI Hotel error: " + e.getMessage());
-            return fallbackHotel(city);
+            try {
+                Thread.sleep(2000);
+                String aiResponse = callGemini(prompt);
+                return parseHotelResponse(aiResponse);
+            } catch (Exception retry) {
+                System.out.println("AI Hotel error after retry: " + retry.getMessage());
+                return fallbackHotel(city);
+            }
         }
     }
 

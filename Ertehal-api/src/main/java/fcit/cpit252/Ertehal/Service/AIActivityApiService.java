@@ -61,8 +61,15 @@ public class AIActivityApiService implements ApiCollectionService<ExternalActivi
             String aiResponse = callGemini(prompt);
             return parseActivityResponse(aiResponse);
         } catch (Exception e) {
-            System.out.println("AI Activity error: " + e.getMessage());
-            return fallbackActivities(city, safeCount);
+            // Retry once on transient errors
+            try {
+                Thread.sleep(2000);
+                String aiResponse = callGemini(prompt);
+                return parseActivityResponse(aiResponse);
+            } catch (Exception retry) {
+                System.out.println("AI Activity error after retry: " + retry.getMessage());
+                return fallbackActivities(city, safeCount);
+            }
         }
     }
 
